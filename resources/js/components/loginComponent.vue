@@ -1,52 +1,56 @@
 <template>
-<div class="login-page">
-    <div class="form">
-        <h1>Yourpromote login</h1>
-        <form class="login-form">
-            <label for="email">Email*</label>
-            <input type="text" placeholder="email" id="email" />
-            <label for="password">Password*</label>
-            <input type="password" placeholder="password" id="password" />
-            <button>login</button>
-            <p class="message">Not registered?   
-            <router-link  to="/ragisteration">Create an account</router-link>
-            </p>
-            
-            <!-- <p class="message" @click="getform">Not registered? <a href="#">Create an account</a></p> -->
-        </form>
+    <div class="login-page">
+        <div class="form">
+            <h1>Yourpromote login</h1>
+            <form class="login-form" @submit.prevent="LoginUser">
+                <label for="email">Email*</label>
+                <input type="text" placeholder="email" id="email" v-model="formdata.email" />
+                <label for="password">Password*</label>
+                <input type="password" placeholder="password" id="password" v-model="formdata.password" />
+
+                <button>login</button>
+                <p class="message">Not registered?
+                    <router-link to="/ragisteration">Create an account</router-link>
+                </p>
+
+                <!-- <p class="message" @click="getform">Not registered? <a href="#">Create an account</a></p> -->
+            </form>
+        </div>
     </div>
-</div>
 </template>
 
 <script>
+//  import { required, email, minLength, sameAs } from "vuelidate/lib/validators";
 export default {
-    date(){
+    name: 'loginuser',
+    data() {
         return {
-            toggaleform: false,
-            loginformdisplay: ''
+            formdata: {
+                email: '',
+                password: '',
+            },
         }
     },
+    // validations: {
+    //         user: {
+    //             email: { required, email },
+    //             password: { required, minLength: minLength(6) },
+    //         }
+    //     },
     methods: {
-        getform() {
-            this.toggaleform = !this.toggaleform
-            console.log(this.toggaleform);
-            if(this.toggaleform == true){
-                this.loginformdisplay= 'block'
-            }else{
-                this.loginformdisplay = 'none'
-            }
-            // this.$(hedding).html("hallo");
-            // $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
+        LoginUser() {
+            console.log(this.formdata)
         }
     }
 }
 </script>
 
 <style scoped>
-/* @import url(https://fonts.googleapis.com/css?family=Roboto:300);  */
-h1{
+/* @import url(https://fonts.googleapis.com/css?family=Roboto:300);      */
+h1 {
     margin: 2% 0%;
 }
+
 .login-page {
     width: 500px;
     padding: 8% 0 0;
@@ -64,10 +68,12 @@ h1{
     text-align: center;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
+
 .form label {
     margin-left: 5px;
     display: flex;
 }
+
 .form input {
     font-family: "Roboto", sans-serif;
     outline: 0;

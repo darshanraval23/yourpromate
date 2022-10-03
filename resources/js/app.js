@@ -18,6 +18,7 @@ const app = createApp({});
 // import ExampleComponent from './components/ExampleComponent.vue';
 import App from './layouts/app.vue'
 import router from './router/index.js'
+
 // app.component('example-component', ExampleComponent);
 // app.component('main-component', layout);
 

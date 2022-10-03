@@ -1,7 +1,8 @@
 <template>
 <div class="login-page">
     <div class="form">
-        <h1 id="hedding">Yourpromote login</h1>
+        {{formdata}}
+        <h1 id="hedding">Yourpromote Registration</h1>
         <form class="register-form" @submit.prevent="LoginUser">
             <label for="name">Name*</label>
             <input type="text" placeholder="name"  v-model="formdata.name"/>
@@ -27,7 +28,7 @@
 
 <script>
 export default {
-    name: 'ragistration',
+    name: 'registeruser',
     data(){
         return {
            formdata: {
@@ -35,12 +36,11 @@ export default {
                 email: '',
                 password: '',
                 confirmpassword: '',
-                
            },
         }
     },
     methods: {
-        LoginUser(){
+        RegisterUser(){
             console.log(this.formdata)
         }
     }
