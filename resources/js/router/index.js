@@ -1,7 +1,7 @@
 import { createWebHistory, createRouter } from "vue-router";
 
-import Signin from "../components/loginComponent.vue"
-import Ragiste from "../components/RagisterationComponent.vue"
+import Signin from "../components/Authorization/loginComponent.vue"
+import Ragiste from "../components/Authorization/RagisterationComponent.vue"
 
 import Home from "../components/HomeComponent.vue"
 

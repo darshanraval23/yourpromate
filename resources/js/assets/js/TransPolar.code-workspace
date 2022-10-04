@@ -1,0 +1,25 @@
+{
+	"folders": [
+		{
+			"path": "../../../New folder/TransPolar"
+		},
+		{
+			"path": "../../../Dress-up"
+		},
+		{
+			"path": "../../../NIraj"
+		},
+		{
+			"path": "../../../Your Prmot"
+		},
+		{
+			"path": "../../../bootstrap-5.0.2-dist/bootstrap-5.0.2-dist"
+		},
+		{
+			"path": "../.."
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "Your Prmot"
+	}
+}

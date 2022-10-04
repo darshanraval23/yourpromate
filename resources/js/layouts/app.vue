@@ -5,7 +5,11 @@
 
 <script>
 export default {
-  components :{
-  },
+  
 }
 </script>
+<style scoped>
+/* #app {
+  background-color: #E5E5E5;
+} */
+</style>

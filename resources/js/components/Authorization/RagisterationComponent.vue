@@ -1,52 +1,74 @@
 <template>
-    <div class="login-page">
-        <div class="form">
-            <h1>Yourpromote login</h1>
-            <form class="login-form" @submit.prevent="LoginUser">
-                <label for="email">Email*</label>
-                <input type="text" placeholder="email" id="email" v-model="formdata.email" />
-                <label for="password">Password*</label>
-                <input type="password" placeholder="password" id="password" v-model="formdata.password" />
+<div class="login-page">
+    <div class="form">
+        <notifications />
+        <h1 id="hedding">Yourpromote Registration</h1>
+        <form class="register-form" @submit.prevent="RegisterUser">
+            <label for="name">Name*</label>
+            <input type="text" placeholder="name" v-model="formdata.name" />
+            <span v-if="formerror.name">{{formerror.name[0]}}</span>
 
-                <button>login</button>
-                <p class="message">Not registered?
-                    <router-link to="/ragisteration">Create an account</router-link>
-                </p>
+            <label for="email">Email*</label>
+            <input type="text" placeholder="email address" v-model="formdata.email" autocomplete="off" />
+            <span v-if="formerror.email">{{formerror.email[0]}}</span>
 
-                <!-- <p class="message" @click="getform">Not registered? <a href="#">Create an account</a></p> -->
-            </form>
-        </div>
+            <label for="password">Password*</label>
+            <input type="password" placeholder="password" v-model="formdata.password" />
+            <span v-if="formerror.password">{{formerror.password[0]}}</span>
+
+            <label for="password">Confirm Password*</label>
+            <input type="password" placeholder="password" v-model="formdata.confirmpassword" />
+            <span v-if="formerror.confirmpassword">{{formerror.confirmpassword[0]}}</span>
+
+            <button>Ragister</button>
+            <p class="message">Already registered?
+                <router-link to="/signin">Sign In</router-link>
+            </p>
+        </form>
     </div>
+</div>
 </template>
 
 <script>
-//  import { required, email, minLength, sameAs } from "vuelidate/lib/validators";
+import axios from 'axios'
 export default {
-    name: 'loginuser',
+    name: 'registeruser',
     data() {
         return {
             formdata: {
+                name: '',
                 email: '',
                 password: '',
+                confirmpassword: '',
             },
+            formerror: {},
         }
     },
-    // validations: {
-    //         user: {
-    //             email: { required, email },
-    //             password: { required, minLength: minLength(6) },
-    //         }
-    //     },
     methods: {
-        LoginUser() {
-            console.log(this.formdata)
+        RegisterUser() {
+            // console.log(this.formdata)
+            const options = this.formdata;
+            let resualt = axios.post('/api/user/ragister', options)
+                .then(resp => {
+                    console.log(resp);
+                    this.$notify({
+                        type: "success",
+                        title: "Important message",
+                        text: resp.data.message,
+                    });
+                    this.$router.push({path: '/signin', replace: true })
+                })
+                .catch(e => {
+                    console.log(e);
+                    this.formerror = e.response.data
+                });
         }
     }
 }
 </script>
 
 <style scoped>
-/* @import url(https://fonts.googleapis.com/css?family=Roboto:300);      */
+/* @import url(https://fonts.googleapis.com/css?family=Roboto:300);  */
 h1 {
     margin: 2% 0%;
 }
@@ -67,6 +89,13 @@ h1 {
     padding: 45px;
     text-align: center;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.form span {
+    margin: 5px 5px;
+    display: flex;
+    color: red;
+    /* font-size: 10px; */
 }
 
 .form label {
@@ -118,9 +147,9 @@ h1 {
     text-decoration: none;
 }
 
-.form .register-form {
+/* .form .register-form {
     display: none;
-}
+} */
 
 .container {
     position: relative;

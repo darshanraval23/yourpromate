@@ -1,43 +1,26 @@
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
 
 import './bootstrap';
 import { createApp } from 'vue';
 
-/**
- * Next, we will create a fresh Vue application instance. You may then begin
- * registering components with the application instance so they are ready
- * to use in your application's views. An example is included for you.
- */
+import { createStore } from 'vuex'
 
-const app = createApp({});
-
-// import ExampleComponent from './components/ExampleComponent.vue';
 import App from './layouts/app.vue'
 import router from './router/index.js'
+import Notifications from '@kyvg/vue3-notification'
+import store from './store/index.js'
+import axios from 'axios';
 
-// app.component('example-component', ExampleComponent);
-// app.component('main-component', layout);
+// @vite('resources/css/your-promate.css')
+import '@/assets/css/your-promate.css';
+// import '@/assets/css/bootstrap.css';
+// import '@/assets/css/Untitled-1.css';
 
-/**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
- */
-
-// Object.entries(import.meta.glob('./**/*.vue', { eager: true })).forEach(([path, definition]) => {
-//     app.component(path.split('/').pop().replace(/\.\w+$/, ''), definition.default);
-// });
-
-/**
- * Finally, we will attach the application instance to a HTML element with
- * an "id" attribute of "app". This element is included with the "auth"
- * scaffolding. Otherwise, you will need to add an element yourself.
- */
-
- createApp(App).use(router).mount('#app');
+const app = createApp(App);
+if(sessionStorage.getItem('token')){
+    axios.defaults.headers.common['Authorization'] = 'Bearer '+sessionStorage.getItem('token');
+ }
+ 
+app.use(store)
+app.use(router)
+app.use(Notifications)
+app.mount('#app');
