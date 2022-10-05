@@ -1,28 +1,60 @@
 <template>
-      <div class="hero-page">
-      <sidebar></sidebar>
-      <!-- <maincontent></maincontent > -->
-        <!-- <h1>home</h1> -->
-      </div>
+{{$store.state.name}}
+{{$store.state.toggelsidebar}}
+
+<div class="hero-page">
+    <SidebarComponent></SidebarComponent>
+    <!-- <SidebarpopupComponent/> -->
+    <div class="col-12 background-overlay">
+        <HeserComponent></HeserComponent>
+        <MasterComponent></MasterComponent>
+    </div>
+    <!-- <h1>home</h1> -->
+</div>
+    <TimelinmodalComponent/>
+    <AssignprojectComponent/>
+    <ProjectdetailsComponent/>
 </template>
+
 <script>
-import sidebar from './User/layout/SidebarComponent.vue'
-// import sidebar2 from './User/layout/Sidebar2.vue'
-import maincontent from '../components/User/layout/main.vue'
-import { useRouter } from 'vue-router'
-    export default {
-      components: {
-        sidebar,
-        maincontent
-      },
-      created(){
+import TimelinmodalComponent from './User/TimelinmodalComponent.vue'
+import SidebarComponent from './User/layout/SidebarComponent.vue'
+import HeserComponent from './User/layout/HederComponent.vue'
+import MasterComponent from './User/MasterComponent.vue'
+import AssignprojectComponent from './User/AssignprojectComponent.vue'
+import ProjectdetailsComponent from './User/ProjectdetailsComponent.vue'
+// import SidebarpopupComponent from './User/layout/SidebarpopupComponent.vue'
+// import vuex from 'vuex'
+import {
+    useRouter
+} from 'vue-router'
+export default {
+    components: {
+        HeserComponent,
+        SidebarComponent,
+        MasterComponent,
+        TimelinmodalComponent,
+        ProjectdetailsComponent,
+        AssignprojectComponent
+        // SidebarpopupComponent
+    },
+    computed: {
+        // getname(){
+        //   this.$store.getters.getname
+        // }
+    },
+    methods: {
+
+    },
+    created() {
         let router = useRouter();
-        if(!sessionStorage.getItem('token')){
-        router.push('/signin');
-      }
-      }
+        if (!sessionStorage.getItem('token')) {
+            router.push('/signin');
+        }
     }
+}
 </script>
+
 <style>
 
 </style>

@@ -15,7 +15,6 @@ body {
   font-family: "gilroy";
   /* src: url(/Assets/fonts/Gilroy-SemiBold/Gilroy-SemiBold.ttf); */
 }
-
 h1,
 h2,
 h3,
@@ -135,7 +134,7 @@ h5 {
 .top-nav ul li {
   /* width: 48px; */
   height: 56px;
-  background: url(@/assets/images/icons/Polygon\ 2\ \(1\).png);
+  background: url(@/assets/images/icons/Polygon2.png);
   /* background-position: center;
   background-repeat: no-repeat;
   background-size: cover; */
@@ -145,7 +144,7 @@ h5 {
 }
 
 .top-nav ul li a.active {
-  background: url(../images/icons/Polygon\ 1.png);
+  background: url(@/assets/images/icons/Polygon1.png);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -197,7 +196,7 @@ h5 {
 }
 
 .bot-nav .poly6 {
-  background: url(@/assets/images/icons/Polygon\ 6.png);
+  background: url(@/assets/images/icons/Polygon6.png);
   background-repeat: no-repeat;
   background-position: center;
   position: absolute;
@@ -396,7 +395,7 @@ header {
   top: 221px;
   width: 536px;
   height: 536px;
-  background: url(@/assets/images/icons/Ellipse\ 6.png);
+  background: url(@/assets/images/icons/Ellipse6.png);
   /* border: 2px solid red; */
   z-index: -1;
 }
@@ -408,7 +407,7 @@ header {
   height: 796px;
   right: 0;
   top: -273px;
-  background: url(@/assets/images/icons/Ellipse\ 5.png);
+  background: url(@/assets/images/icons/Ellipse5.png);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -422,7 +421,7 @@ header {
   height: 796px;
   left: -240px;
   top: 626px;
-  background: url(@/assets/images/icons/Ellipse\ 4.png);
+  background: url(@/assets/images/icons/Ellipse4.png);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

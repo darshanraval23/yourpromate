@@ -99,13 +99,13 @@ h5 {
 
 .hero-page {
   display: flex;
-
+  height: 100vh;
 }
 
-.main-menu {
+.menu-container {
   text-align: center;
   background: #E5E5E5;
-  height: 100vh;
+  height: 100%;
 }
 
 /* 
