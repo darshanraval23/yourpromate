@@ -1,5 +1,5 @@
 <template>
-     <section class="main-assign-detail col-3 mySidenav" id="hide-menu1" :style="{'transform' : $store.state.popuptrogale.projectdetails ? 'translateX(0px)':'translateX(500px)'}">
+     <section class="main-assign-detail col-3 mySidenav" id="hide-menu1" :style="{'transform' : $store.state.slidertrogale.assignproject ? 'translateX(0px)':'translateX(500px)'}">
       <span><i class="toggel-click3 closebtn collaps fa-solid fa-angle-right first"></i></span>
       <div class="assign-detail">
         <div class="assign-dev">

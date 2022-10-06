@@ -1,5 +1,5 @@
 <template>
-<div class="main-porjdetailas col-3 " :style="{'transform' : $store.state.popuptrogale.projectdetails ? 'translateX(0px)':'translateX(500px)'}">
+<div class="main-porjdetailas col-3 " :style="{'transform' : $store.state.slidertrogale.projectdetails ? 'translateX(0px)':'translateX(500px)'}">
     <span><i class="toggel-click2 collaps3 fa-solid fa-angle-right first"></i></span>
     <div class="porj-details">
         <div class="porj-details-heading">

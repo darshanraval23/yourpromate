@@ -17,7 +17,8 @@ import '@/assets/css/your-promate.css';
 
 const app = createApp(App);
 if(sessionStorage.getItem('token')){
-    axios.defaults.headers.common['Authorization'] = 'Bearer '+sessionStorage.getItem('token');
+    // axios.defaults.headers.common['Authorization'] = 'Bearer '+sessionStorage.getItem('token');
+    
  }
  
 app.use(store)

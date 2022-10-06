@@ -1,5 +1,5 @@
 <template>
-    <aside class="col-2 main-add" id="clickeddown" :style="{'display' : $store.state.toggelsidebar? 'block':'none'}">
+    <aside class="col-2 main-add" id="clickeddown" :style="{'display' : $store.state.slidertrogale.sidebarslider? 'block':'none'}">
         <div class="addnew-proj">
           <div class="proj">
             <i class="fa-sharp fa-solid fa-plus" set=""></i>

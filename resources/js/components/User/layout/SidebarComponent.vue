@@ -54,22 +54,20 @@
                         </a>
                     </li>
                     <li>
-                        <span @click="sidebarpopup"><i class="toggel-click1 rotate fa-solid fa-angle-right first" id="sliderbutton" ></i></span>
+                        <span @click="this.$store.dispatch('triggersidebarslider')"><i class="toggel-click1 rotate fa-solid fa-angle-right first" id="sliderbutton" ></i></span>
                     </li>
                 </ul>
             </div>
         </div>
     </aside>
-    <SidebarpopupComponent :toggelsidebar="toggelsidebar"/>
+    <SidebarpopupComponent />
 </template>
-
 <script>
-// import store from 'vuex'
 import SidebarpopupComponent from './SidebarpopupComponent.vue'
 export default {
     data(){
         return{
-        toggelsidebar: false,
+        // toggelsidebar: false,
         name: 'darshan'
         }
     },
@@ -77,13 +75,14 @@ export default {
         SidebarpopupComponent,
     },
     methods:{
-      sidebarpopup(){
-          console.log('vue methode called');
-         this.$store.commit("troggleme", this.toggelsidebar);
-        // this.toggelsidebar = !this.toggelsidebar
-
-            this.$store.dispatch('troggleme', this.name);   
-      }
+    //   sidebarpopup(){
+    //       console.log('vue methode called');
+    //       this.$store.commit("troggleme", this.toggelsidebar);
+    //        // this.toggelsidebar = !this.toggelsidebar
+    //        // this.$store.dispatch('troggleme', this.name);   
+    //        // this.$store.commit('changename'); 
+    //        this.$store.dispatch('changename'); 
+    //   }
     }
 
 }

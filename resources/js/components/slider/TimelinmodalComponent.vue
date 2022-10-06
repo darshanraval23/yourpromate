@@ -1,5 +1,5 @@
 <template>
-<div class="main-time-detail col-3 mySidenav" id="mySidenav" :style="{'transform' : $store.state.popuptrogale.timeline ? 'translateX(0px)':'translateX(500px)'}" >
+<div class="main-time-detail col-3 mySidenav" id="mySidenav" :style="{'transform' : $store.state.slidertrogale.timeline ? 'translateX(0px)':'translateX(500px)'}" >
     <span><i class="toggel-click3 closebtn collaps1 fa-solid fa-angle-right first"></i></span>
     <div class="time-details">
         <h3>Timeline</h3>

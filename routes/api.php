@@ -7,6 +7,8 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\UserController;
 use Laravel\Sanctum\Sanctum; 
+use App\Http\Controllers\ProjectController;
+
 
 //public routs
 //user ragistration rout
@@ -14,6 +16,10 @@ Route::post("user/ragister",[UserController::class ,"ragister"]);
 
 //user login 
 Route::post("user/login",[UserController::class ,"login"]);
+
+//project routs
+Route::post("/project",[projectController::class ,"index"]);
+
 
 //fall back routs
 // Route::fallback(function(){
