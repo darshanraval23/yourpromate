@@ -1,12 +1,13 @@
 <template>
     <aside class="col-2 main-add" id="clickeddown" :style="{'display' : $store.state.slidertrogale.sidebarslider? 'block':'none'}">
-        <div class="addnew-proj">
+        <div class="addnew-proj" @click="$store.state.isModalVisible = !$store.state.isModalVisible">
           <div class="proj">
             <i class="fa-sharp fa-solid fa-plus" set=""></i>
-            <a href="">Add New Project</a>
+            {{$store.state.isModalVisible}}
+            <a href="#">Add New Project</a>
           </div>
           <p>Quick Access</p>
-          <a href="">View Archive List</a>
+          <a href="#">View Archive List</a>
         </div>
         <i  class="fa-solid fa-thumbtack"></i>
       </aside>  
@@ -20,6 +21,12 @@ export default {
   },
   state(){
 
+  },
+  methods:{
+    // getlist(){
+    //   this.$store.state.isModalVisible = !this.$store.state.isModalVisible
+    //   console.log(this.$store.state.isModalVisible)
+    // } 
   },
   props:{
     toggelsidebar: String,

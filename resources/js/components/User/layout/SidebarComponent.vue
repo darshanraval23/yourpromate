@@ -1,6 +1,6 @@
 <template>
     <aside class="col-1">
-        <div class="menu-container">
+        <div class="main-menu">
             <div class="logo">
                 <a href="">
                     <img src="@/assets/images/CodelinkLogoSymbol.png" alt="">
@@ -54,7 +54,7 @@
                         </a>
                     </li>
                     <li>
-                        <span @click="this.$store.dispatch('triggersidebarslider')"><i class="toggel-click1 rotate fa-solid fa-angle-right first" id="sliderbutton" ></i></span>
+                        <span @click="this.$store.dispatch('triggersidebarslider')"><i class="toggel-click1 rotate fa-solid fa-angle-right first" :style="{'display' : !$store.state.slidertrogale.sidebarslider? '': 'none'}" ></i></span>
                     </li>
                 </ul>
             </div>

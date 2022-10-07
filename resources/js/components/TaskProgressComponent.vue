@@ -1,23 +1,25 @@
 <template>
 <div class="webdev col-9">
     <div v-for="item in projectdata" :key="item.id">
-        <!-- {{projectdata}}/ -->
+        <!-- {{projectdata}} -->
         <div class="main-webdev menu-button ">
             <div class="right-webdev col-8">
                 <div class="top-title">
-                    <h3 @click="this.$store.commit('trogglesmodal' , 'projectdetails')">{{item.name}}</h3>
+                    <h3 @click="this.$store.commit('trogglesmodal' , item.name+item.details)">{{item.name}}</h3>
                     <p>
-                        <i class="fa-3 fa-sharp fa-solid fa-circle"> </i>{{item.status}}Pending Allocation
+                        <i class="fa-3 fa-sharp fa-solid fa-circle"> </i>{{item.status}}
                     </p>
                 </div>
                 <div class="bot-title">
-                    <a href="">Category Sample</a>
-                    <a href="">Category Sample</a>
+                    <a href="">{{item.project_categories}}</a>
                 </div>
             </div>
-            <div class="left-webdev col-3">
-                <p>12-04-2021 1:20 PM</p>
-                <p>Missing Deadline</p>
+            <div class="left-webdev col-3 deadline">
+                <p>{{item.ProjectStart}}</p>
+                <div class="deadline" v-if="item.deadlinestatus != 'Missing Deadline'">
+                <p>Deadline:<span>{{item.deadlinestatus}}</span></p>
+                </div>
+                <p v-else>{{item.deadlinestatus}}</p>
             </div>
             <div class="side-tap col-1">
                 <a href="#"><i class="fa-sharp fa-solid fa-circle"></i></a>

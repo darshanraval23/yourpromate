@@ -30,12 +30,12 @@ h5 {
 
 @font-face {
   font-family: "gilroy-semi";
-  src: url("../fonts/webfontkit-20220910-044236/gilroy-semibold-webfont.woff2") format("woff2"), url("../fonts/webfontkit-20220910-044236/gilroy-semibold-webfont.woff") format("woff");
+  src: url("@assets/fonts/webfontkit-20220910-044236/gilroy-semibold-webfont.woff2") format("woff2"), url("@assets/fonts/webfontkit-20220910-044236/gilroy-semibold-webfont.woff") format("woff");
 }
 
 @font-face {
   font-family: "gilroy-bold";
-  src: url("../fonts/webfontkit-20220912-063343/gilroy-bold-webfont.woff2") format("woff2"), url("../fonts/webfontkit-20220912-063343/gilroy-bold-webfont.woff2") format("woff");
+  src: url("@assets/fonts/webfontkit-20220912-063343/gilroy-bold-webfont.woff2") format("woff2"), url("@assets/fonts/webfontkit-20220912-063343/gilroy-bold-webfont.woff2") format("woff");
 }
 
 :root {
@@ -116,7 +116,7 @@ h5 {
 
 
 .top-nav {
-  z-index: 6;
+  z-index: 0;
   margin-top: 30px;
   height: 50%;
   position: relative;
@@ -172,7 +172,7 @@ h5 {
   flex-direction: column;
   gap: 35px;
   position: relative;
-  z-index: 2;
+  z-index: 0;
 }
 
 .bot-nav ul li a {
@@ -249,7 +249,7 @@ h5 {
   height: 100vh;
   /* transform: translateX(-500px); */
   /* transition: all 5s linear; */
-  z-index: 1;
+  z-index: 0;
 
 }
 

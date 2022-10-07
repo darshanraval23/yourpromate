@@ -4,6 +4,7 @@
     <!-- {{this.projecdetails}} -->
     <!-- {{getprojectsdetails}} -->
     <div class="circle1"></div>
+
     <SearchboxComponent />
     <div class="web-development">
         <!-- {{this.projecdetails}} -->
@@ -17,6 +18,7 @@ import { mapGetters, mapActions  } from "vuex";
 import SearchboxComponent from '../slider/SearchboxComponent.vue'
 import ApplyfilterComponent from '../ApplyfilterComponent.vue'
 import TaskProgressComponent from '../TaskProgressComponent.vue'
+
 export default {
     data(){
         row: this.projecdetails

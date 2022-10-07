@@ -14,15 +14,24 @@ class ProjectController extends Controller
     public function index()
     {
 
-        // $employess = DB::table('projects')
-        // ->whereRaw('(CASE
-        // WHEN p.status==1 THEN PendingAllocation 
-        // WHEN p.status==2 THEN In Progress 
-        // WHEN p.status==3 THEN allocated 
-        // WHEN P.status==4 THEN camplited
-        // END) AS status')
-        // ->get();
+
+        $employess = project::select(
+            DB::raw('projects.*'),
+            DB::raw('(CASE 
+            WHEN status = 1 THEN "PendingAllocation"
+            WHEN status = 2 THEN "In Progress"
+            WHEN status = 3 THEN "Allocated"
+            WHEN status = 4 THEN "Camplited"
+            ELSE "In Progress"
+            END) AS status'),
+            DB::raw('(CASE 
+            WHEN deadline < now() THEN "Missing Deadline"
+            ELSE deadline
+            END) AS deadlinestatus'))
+        ->get();
+
+
         
-        // return response()->json($employess, 200);
+        return response()->json($employess, 200);
     }
 }

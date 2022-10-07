@@ -25,7 +25,8 @@ export default createStore({
         isAuthenticated: false,
         token: '',
         projectdetails: Object,
-        error: []
+        error: [],
+        isModalVisible: false,
     },
     modules: {
         //use modules 
