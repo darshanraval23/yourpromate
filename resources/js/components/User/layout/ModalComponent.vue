@@ -21,6 +21,7 @@
                 <!-- footer -->
             </slot>
             <!-- <button type="button" class="btn-green" @click="$store.state.isModalVisible = !$store.state.isModalVisible">
+                cancel
             </button> -->
         </footer>
     </div>

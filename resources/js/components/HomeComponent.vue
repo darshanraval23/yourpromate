@@ -1,5 +1,6 @@
 <template>
 <div class="hero-page">
+    <notifications/>
     <SidebarComponent></SidebarComponent>
     <div class="col-12 background-overlay" @click="this.$store.commit('closemodal')">
         <HeserComponent></HeserComponent>
@@ -14,15 +15,15 @@
             <h1> Add Project</h1>
         </template>
         <template v-slot:body>
-            <form action="index.html" method="post">
+            <form @submit.prevent="addproject">
                 <label for="name">Project name:</label>
-                <input type="text" id="name" name="user_name">
+                <input type="text" id="name" name="user_name" v-model="filddata.name">
 
                 <label for="projectdetails">Project Details:</label>
-                <textarea id="projectdetails" name="user_bio"></textarea>
+                <textarea id="projectdetails" name="user_bio" v-model="filddata.details"></textarea>
 
                 <label for="categories">Project Categories:</label>
-                <select id="categories" name="project_categories">
+                <select id="categories" name="project_categories" v-model="filddata.categories">
                     <optgroup label="Web">
                         <option value="frontend_developer">Front-End Developer</option>
                         <option value="php_developer">PHP Developer</option>
@@ -36,29 +37,19 @@
                         <option value="ios_developer">IOS Developer</option>
                         <option value="mobile_designer">Mobile Designer</option>
                     </optgroup>
-                    <optgroup label="Business">
-                        <option value="business_owner">Business Owner</option>
-                        <option value="freelancer">Freelancer</option>
-                    </optgroup>
                 </select>
                 <label for="">deadline</label>
-                <input type="date" name="deadline" id="">
-
-                <label>allocated:</label>
-                <input type="checkbox" id="development" value="interest_development" name="user_interest">
-                <label class="light" for="development">darshan</label><br>
-                <input type="checkbox" id="design" value="interest_design" name="user_interest"><label class="light" for="design">yash</label><br>
-                <input type="checkbox" id="business" value="interest_business" name="user_interest"><label class="light" for="business">Business</label>
+                <input type="date" name="deadline" id="" v-model="filddata.deadline">
 
                 <div class="btn-submit">
-                    <button type="button" class="submit">Add</button>
+                    <button type="submit" class="submit">Add</button>
                     <button type="button" class="denger">Cancal</button>
                 </div>
             </form>
         </template>
 
         <template v-slot:footer>
-            This is a new modal footer.
+            <!-- This is a new modal footer. -->
         </template>
     </ModalComponent>
 
@@ -95,18 +86,42 @@ export default {
     data() {
         return {
             isModalVisible: false,
+            filddata:{
+                name: '',
+                details: '',
+                categories:'',
+                deadline:''
+            },
+            error: {}
         };
     },
     methods: {
-        // showModal() {
-        //     this.isModalVisible = true;
-        // },
-        // closeModal() {
-        //     this.isModalVisible = false;
-        // }
+        addproject(){
+            if(this.filddata.name != ''|| this.filddata.details != ''){
+                let resualt = axios.post('api/project/add', this.filddata)
+                .then(resp=>{
+                    this.$notify({
+                        type: "success",
+                        title: "Important message",
+                        text: resp.data.message,
+                    });
+                    this.state.projectdetails = resp.data.message
+                })
+                .catch(e=>{
+                    this.state.error = e.response.data
+                })
+            }else{
+                this.$notify({
+                        type: "denger",
+                        title: "Important message",
+                        text: "form is not validate!",
+                    });
+                console.log('not valid')
+            }
+            
+        }
     },
     created() {
-
         let router = useRouter();
         if (!sessionStorage.getItem('token')) {
             router.push('/signin');
@@ -116,16 +131,6 @@ export default {
 </script>
 
 <style scoped>
-/* *, *:before, *:after {
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: 'Nunito', sans-serif;
-  color: #384047;
-} */
 
 form {
     max-width: 100%;

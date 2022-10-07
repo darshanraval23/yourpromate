@@ -27,6 +27,7 @@ export default createStore({
         projectdetails: Object,
         error: [],
         isModalVisible: false,
+        userdata: Object
     },
     modules: {
         //use modules 
@@ -87,6 +88,15 @@ export default createStore({
             console.log('action called',commit);
             console.log('action called',state);
             // state.toggelsidebar = !state.toggelsidebar
+        },
+        async addproject(state, commit){
+            let resualt = axios.post('/api/project')
+            .then(resp=>{
+                this.state.projectdetails = resp.data
+            })
+            .catch(e=>{
+                this.state.error = e.response.data
+            })
         },
         async getprojects(state){
             let resualt = axios.post('/api/project')

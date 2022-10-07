@@ -13,8 +13,6 @@ class ProjectController extends Controller
      */
     public function index()
     {
-
-
         $employess = project::select(
             DB::raw('projects.*'),
             DB::raw('(CASE 
@@ -29,9 +27,19 @@ class ProjectController extends Controller
             ELSE deadline
             END) AS deadlinestatus'))
         ->get();
-
-
-        
         return response()->json($employess, 200);
+    }
+    public function addproject(Request $req)
+    {
+        $model_obj = new project;
+        $model_obj->name = $req->name;
+        $model_obj->deadline = $req->deadline;
+        $model_obj->project_categories = $req->categories;
+        $model_obj->details = $req->details;
+        $model_obj->save();
+        
+        return response()->json([
+            'message' => ['The project has been successfully added!']
+         ], 200);
     }
 }

@@ -65,7 +65,7 @@ export default {
                 }).catch(e => {
                     this.formerror = e.response.data
                     // console.log(e);
-                   this.tonggelstyle = 'block'
+                   this.tonggelstyle = 'blocphpk'
                 });
         },
     },

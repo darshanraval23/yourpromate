@@ -20,6 +20,7 @@ Route::post("user/login",[UserController::class ,"login"]);
 //project routs
 Route::post("/project",[projectController::class ,"index"]);
 
+Route::post("/project/add",[projectController::class ,"addproject"]);
 
 //fall back routs
 // Route::fallback(function(){
