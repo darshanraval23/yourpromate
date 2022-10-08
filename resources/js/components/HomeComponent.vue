@@ -1,8 +1,9 @@
 <template>
 <div class="hero-page">
-    <notifications/>
+    <notifications />
     <SidebarComponent></SidebarComponent>
-    <div class="col-12 background-overlay" @click="this.$store.commit('closemodal')">
+    <!-- @click="this.$store.commit('closemodal')" -->
+    <div class="col-12 background-overlay">
         <HeserComponent></HeserComponent>
         <MaincontentComponent>
         </MaincontentComponent>
@@ -10,40 +11,52 @@
     <!-- vue model -->
     <!-- <ModalComponent v-show="$store.state.isModalVisible" @close="closeModal"></ModalComponent> -->
     <!-- end of vue model -->
-    <ModalComponent v-show="$store.state.isModalVisible" @close="closeModal">
+    <ModalComponent v-show="$store.state.isModalVisible" @close="modelclosed">
         <template v-slot:header>
             <h1> Add Project</h1>
         </template>
         <template v-slot:body>
+            <!-- {{error}} -->
             <form @submit.prevent="addproject">
-                <label for="name">Project name:</label>
-                <input type="text" id="name" name="user_name" v-model="filddata.name">
+                <div class="input-cantainer">
+                    <label for="name">Project name:</label>
+                    <input type="text" id="name" name="user_name" v-model="filddata.name">
+                    <span v-if="error.name">{{error.name}}</span>
+                </div>
 
-                <label for="projectdetails">Project Details:</label>
-                <textarea id="projectdetails" name="user_bio" v-model="filddata.details"></textarea>
+                <div class="input-cantainer">
+                    <label for="projectdetails">Project Details:</label>
+                    <textarea id="projectdetails" name="user_bio" v-model="filddata.details"></textarea>
+                    <span v-if="error.details">{{error.details}}</span>
+                </div>
 
-                <label for="categories">Project Categories:</label>
-                <select id="categories" name="project_categories" v-model="filddata.categories">
-                    <optgroup label="Web">
-                        <option value="frontend_developer">Front-End Developer</option>
-                        <option value="php_developer">PHP Developer</option>
-                        <option value="python_developer">Python Developer</option>
-                        <option value="rails_developer">Rails Developer</option>
-                        <option value="web_designer">Web Designer</option>
-                        <option value="wordpress_developer">Wordpress Developer</option>
-                    </optgroup>
-                    <optgroup label="Mobile">
-                        <option value="android_developer">Android Developer</option>
-                        <option value="ios_developer">IOS Developer</option>
-                        <option value="mobile_designer">Mobile Designer</option>
-                    </optgroup>
-                </select>
-                <label for="">deadline</label>
-                <input type="date" name="deadline" id="" v-model="filddata.deadline">
+                <div class="input-cantainer">
+                    <label for="categories">Categories:</label>
+                    <select id="categories" name="project_categories" v-model="filddata.categories">
+                        <optgroup label="Web">
+                            <option value="php_laravel">Php Laravel</option>
+                            <option value="php">PHP</option>
+                            <option value="web_designer">Web Designer</option>
+                            <option value="wordpress">Wordpress</option>
+                        </optgroup>
+                        <optgroup label="Mobile">
+                            <option value="android">Android</option>
+                            <option value="ios">IOS</option>
+                            <option value="mobile_designer">Mobile Designer</option>
+                        </optgroup>
+                    </select>
+                    <span v-if="error.categories">{{error.categories}}</span>
+                </div>
+
+                <div class="input-cantainer">
+                    <label for="">deadline</label>
+                    <input type="date" name="deadline" id="" v-model="filddata.deadline">
+                    <span v-if="error.deadline">{{error.deadline}}</span>
+                </div>
 
                 <div class="btn-submit">
                     <button type="submit" class="submit">Add</button>
-                    <button type="button" class="denger">Cancal</button>
+                    <button type="button" class="denger" @click="modelclosed">Cancal</button>
                 </div>
             </form>
         </template>
@@ -56,7 +69,6 @@
 </div>
 <TimelinmodalComponent />
 <AssignprojectComponent />
-<ProjectdetailsComponent />
 </template>
 
 <script>
@@ -70,6 +82,7 @@ import ModalComponent from './User/layout/ModalComponent.vue'
 import {
     useRouter
 } from 'vue-router'
+
 export default {
     components: {
         HeserComponent,
@@ -86,39 +99,73 @@ export default {
     data() {
         return {
             isModalVisible: false,
-            filddata:{
+            filddata: {
                 name: '',
                 details: '',
-                categories:'',
-                deadline:''
+                categories: '',
+                deadline: ''
             },
-            error: {}
+            error: {
+                name: '',
+                details: '',
+                categories: '',
+                deadline: ''
+            }
         };
     },
     methods: {
-        addproject(){
-            if(this.filddata.name != ''|| this.filddata.details != ''){
+        addproject() {
+            if (this.filddata.name != '' && this.filddata.details != '') {
                 let resualt = axios.post('api/project/add', this.filddata)
-                .then(resp=>{
-                    this.$notify({
-                        type: "success",
-                        title: "Important message",
-                        text: resp.data.message,
-                    });
-                    this.state.projectdetails = resp.data.message
-                })
-                .catch(e=>{
-                    this.state.error = e.response.data
-                })
-            }else{
-                this.$notify({
-                        type: "denger",
-                        title: "Important message",
-                        text: "form is not validate!",
-                    });
-                console.log('not valid')
+                    .then(resp => {
+                        this.$notify({
+                            type: "success",
+                            title: "Important message",
+                            text: resp.data.message,
+                        });
+                        console.log('saved projenct', resp)
+                        this.$store.dispatch('getprojects')
+                        this.$store.state.isModalVisible = false
+                        // this.
+                        this.filddata = {
+                            name: '',
+                            details: '',
+                            categories: '',
+                            deadline: ''
+                        }
+                        this.error = {
+                            name: '',
+                            details: '',
+                            categories: '',
+                            deadline: ''
+                        }
+                    })
+                    .catch(e => {
+                        this.state.error = e.response.data
+                    })
+            } else if (this.filddata.name == '') {
+                this.error.name = "name is requerd!"
             }
-            
+            if (this.filddata.details == '') {
+                this.error.details = "details is requerd!"
+            }
+            if (this.filddata.categories == '') {
+                this.error.categories = "categories is requerd!"
+            }
+            if (this.filddata.deadline == '') {
+                this.error.deadline = "deadline is requerd!"
+            }
+
+        },
+        modelclosed(){
+            console.log('perant call')
+            this.error ={
+                 name: '',
+                details: '',
+                categories: '',
+                deadline: ''
+            }
+            this.$store.state.isModalVisible = false
         }
     },
     created() {
@@ -131,7 +178,6 @@ export default {
 </script>
 
 <style scoped>
-
 form {
     max-width: 100%;
     /* margin: 10px auto; */
@@ -171,6 +217,14 @@ select {
     background-color: #e8eeef;
     color: #8a97a0;
     box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
+    /* margin-bottom: 30px; */
+}
+
+.input-cantainer span {
+    color: red;
+}
+
+.input-cantainer {
     margin-bottom: 30px;
 }
 

@@ -30,12 +30,12 @@ h5 {
 
 @font-face {
   font-family: "gilroy-semi";
-  src: url("@assets/fonts/webfontkit-20220910-044236/gilroy-semibold-webfont.woff2") format("woff2"), url("@assets/fonts/webfontkit-20220910-044236/gilroy-semibold-webfont.woff") format("woff");
+  src: url("../fonts/webfontkit-20220910-044236/gilroy-semibold-webfont.woff2") format("woff2"), url("../fonts/webfontkit-20220910-044236/gilroy-semibold-webfont.woff") format("woff");
 }
 
 @font-face {
   font-family: "gilroy-bold";
-  src: url("@assets/fonts/webfontkit-20220912-063343/gilroy-bold-webfont.woff2") format("woff2"), url("@assets/fonts/webfontkit-20220912-063343/gilroy-bold-webfont.woff2") format("woff");
+  src: url("../fonts/webfontkit-20220912-063343/gilroy-bold-webfont.woff2") format("woff2"), url("../fonts/webfontkit-20220912-063343/gilroy-bold-webfont.woff2") format("woff");
 }
 
 :root {

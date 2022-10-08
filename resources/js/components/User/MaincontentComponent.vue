@@ -8,25 +8,38 @@
     <SearchboxComponent />
     <div class="web-development">
         <!-- {{this.projecdetails}} -->
-        <TaskProgressComponent :projectdata="this.projecdetails"/>
+        <TaskProgressComponent :projectdata="this.projecdetails" @projectselect="openprojectdetailsmodel"/>
         <ApplyfilterComponent />
     </div>
 </section>
+<ProjectdetailsComponent />
+
 </template>
 <script>
 import { mapGetters, mapActions  } from "vuex";
 import SearchboxComponent from '../slider/SearchboxComponent.vue'
 import ApplyfilterComponent from '../ApplyfilterComponent.vue'
 import TaskProgressComponent from '../TaskProgressComponent.vue'
+import ProjectdetailsComponent from '../slider/ProjectdetailsComponent.vue'
 
 export default {
     data(){
-        row: this.projecdetails
+        return{
+            // row: this.projecdetails
+        }
+    },
+    methods:{
+        openprojectdetailsmodel(data){
+            console.log('model open',data)
+            this.$store.state.slidertrogale.projectdetails = true
+            
+        }
     },
     components: { 
         SearchboxComponent,
         ApplyfilterComponent,
         TaskProgressComponent,
+        ProjectdetailsComponent,
     }, 
     created(){
         this.$store.dispatch('getprojects')

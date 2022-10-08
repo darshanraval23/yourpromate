@@ -5,7 +5,7 @@
             <slot name="header">
                 Add project details
             </slot>
-            <button type="button" class="btn-close close" @click="$store.state.isModalVisible = !$store.state.isModalVisible">
+            <button type="button" class="btn-close close" @click="close">
                 x
             </button>
         </header>
@@ -34,6 +34,7 @@ export default {
     methods: {
         close() {
             this.$emit('close');
+            this.$store.state.isModalVisible = !this.$store.state.isModalVisible
         },
     },
 };

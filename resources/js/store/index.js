@@ -106,7 +106,15 @@ export default createStore({
             .catch(e=>{
                 this.state.error = e.response.data
             })
-        }   
+        },
+        projectdetails(state, data){
+
+            // console.log('gatter data',data);
+            // console.log('gatter state',this.state.projectdetails.find(projectdetails => projectdetails.id === data));
+            // this.state.customers.find(projectdetails => projectdetails.id === data) 
+            return this.state.projectdetails.find(projectdetails => projectdetails.id === data); 
+        },
+          
     },
     getters: {
         /*
@@ -116,6 +124,9 @@ export default createStore({
         getname: function (state) {
             return `${state.name}`
         },
+        // projectsdetails: (state) => (data) => {
+        //     return this.state.projectdetails.find(projectdetails => projectdetails.id === data)
+        //   },
         getprojectsdetails: function(state){
             // console.error('getter called');
             // console.error(state.projectdetails);

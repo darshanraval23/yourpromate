@@ -80,3 +80,13 @@
     </div>
 </div>
 </template>
+<script>
+export default {
+    props:{
+        id: String
+    },
+    created(){
+        console.log(this.id)
+    }
+}
+</script>

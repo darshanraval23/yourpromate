@@ -1,11 +1,13 @@
 <template>
 <div class="webdev col-9">
+    <!-- {{projectdata}} -->
     <div v-for="item in projectdata" :key="item.id">
-        <!-- {{projectdata}} -->
+        <!-- {{this.getprojectsdetails}} -->
         <div class="main-webdev menu-button ">
             <div class="right-webdev col-8">
                 <div class="top-title">
-                    <h3 @click="this.$store.commit('trogglesmodal' , item.name+item.details)">{{item.name}}</h3>
+                    <!-- <h3 @click="this.$store.dispatch('projectdetails ' , item.name+item.details)">{{item.name}}</h3> -->
+                    <h3 @click="projecdetails(item.id)">{{item.name}}</h3>
                     <p>
                         <i class="fa-3 fa-sharp fa-solid fa-circle"> </i>{{item.status}}
                     </p>
@@ -45,15 +47,23 @@
 </template>
 
 <script>
+import { mapGetters, mapActions  } from "vuex";
+
 export default {
     methods: {
-        // trogglepopup(data){
-        //     // this.parant.troggleTimeline
-        //     // this.parant.troggleTimeline
-        //     // console.log(data)
-        //     //  this.$emit('change')
-        //      this.$store.commit('troggletimeline',data)
-        // }
+        projecdetails(data){
+            console.log(data)
+            // this.parant.troggleTimeline
+            // this.parant.troggleTimeline
+            // console.log('project info',data)
+             this.$emit('projectselect', data)    
+            //  this.$store.dispatch('projectdetails',data)
+            //  .then(resp=>){
+            //  }
+        }
+    },
+    computed:{
+        //  ...mapGetters('projectsdetails', 2)
     },
     props: {
         projectdata: Object
