@@ -9,14 +9,14 @@ import { createStore } from 'vuex'
 import UserModule from './modules/UserModule'
 
 //import api plugin
-import axios  from 'axios'
+import axios from 'axios'
 
 export default createStore({
     state: {
         //define state propertic(Variable)
         toggelsidebar: false,
         name: 'darshan',
-        slidertrogale:{
+        slidertrogale: {
             timeline: false,
             assignproject: false,
             projectdetails: false,
@@ -33,88 +33,92 @@ export default createStore({
         //use modules 
         user: UserModule,
 
-        },
+    },
     mutations: {
         /*
         @info hear create those function will manuplation state data
         @paems take two parms state and data(paylode)
         */
         trogglesmodal(state, data) {
-            if(data == 'timeline'){
-                console.log('state mutation data',data)
+            if (data == 'timeline') {
+                console.log('state mutation data', data)
                 this.state.slidertrogale.timeline = !this.state.slidertrogale.timeline
-            }else if(data == 'assignproject'){
-                console.log('state mutation data',data)
+            } else if (data == 'assignproject') {
+                console.log('state mutation data', data)
                 this.state.slidertrogale.assignproject = !this.state.slidertrogale.assignproject
-            }else if(data == 'projectdetails'){
-                console.log('state mutation data',data)
+            } else if (data == 'projectdetails') {
+                console.log('state mutation data', data)
                 this.state.slidertrogale.projectdetails = !this.state.slidertrogale.projectdetails
             }
             // this.commit(sidebartoggel)
         },
-        login(state, data){
+        login(state, data) {
             console.log('login')
             this.state.isautodication = true
             this.state.token = data
         },
-        logout(state, data){
+        logout(state, data) {
             // console.log(data)
             this.state.isautodication = false
         },
-        changename(state){
+        changename(state) {
             this.state.name = 'raval'
         },
-        closemodal(){
+        closemodal() {
             console.log('model close')
             this.state.slidertrogale.timeline = false
             this.state.slidertrogale.assignproject = false
             this.state.slidertrogale.projectdetails = false
             this.state.slidertrogale.sidebarslider = false
         }
+
     },
     actions: {
         /*
         @info  hare we can call api 
         @paems take two parms state and cammit(paylode) 
         */
-        changename(state){
+        changename(state) {
             this.state.name = 'ravaldarshan'
         },
-        triggersidebarslider(state){
+        triggersidebarslider(state) {
             this.state.slidertrogale.sidebarslider = !this.state.slidertrogale.sidebarslider
         },
-        async troggleme(state,commit) {
+        async troggleme(state, commit) {
             // console.log(paylode);
-            console.log('action called',commit);
-            console.log('action called',state);
+            console.log('action called', commit);
+            console.log('action called', state);
             // state.toggelsidebar = !state.toggelsidebar
         },
-        async addproject(state, commit){
+        async addproject(state, commit) {
             let resualt = axios.post('/api/project')
-            .then(resp=>{
-                this.state.projectdetails = resp.data
-            })
-            .catch(e=>{
-                this.state.error = e.response.data
-            })
+                .then(resp => {
+                    this.state.projectdetails = resp.data
+                })
+                .catch(e => {
+                    this.state.error = e.response.data
+                })
         },
-        async getprojects(state){
+        async getprojects(state) {
             let resualt = axios.post('/api/project')
-            .then(resp=>{
-                this.state.projectdetails = resp.data
-            })
-            .catch(e=>{
-                this.state.error = e.response.data
-            })
+                .then(resp => {
+                    this.state.projectdetails = resp.data
+                })
+                .catch(e => {
+                    this.state.error = e.response.data
+                })
         },
-        projectdetails(state, data){
-
-            // console.log('gatter data',data);
-            // console.log('gatter state',this.state.projectdetails.find(projectdetails => projectdetails.id === data));
-            // this.state.customers.find(projectdetails => projectdetails.id === data) 
-            return this.state.projectdetails.find(projectdetails => projectdetails.id === data); 
-        },
-          
+        getprojectbyid(state, id){
+            let resualt = axios.get("/api/project/"+id)
+                .then(resp => {
+                    console.log(resp)
+                    this.state.projectdetails = resp.data
+                })
+                .catch(e => {
+                    console.log(e)
+                    this.state.error = e.response.data
+                })
+        }
     },
     getters: {
         /*
@@ -124,13 +128,17 @@ export default createStore({
         getname: function (state) {
             return `${state.name}`
         },
-        // projectsdetails: (state) => (data) => {
-        //     return this.state.projectdetails.find(projectdetails => projectdetails.id === data)
-        //   },
-        getprojectsdetails: function(state){
-            // console.error('getter called');
-            // console.error(state.projectdetails);
+        //get all project details
+        getprojectsdetails: function (state) {
             return state.projectdetails
-        }
-    }
+        },
+        getprojectsbyid: (state) => (id) => {
+            console.log(id)
+            return state.projectdetails.find(projectdetails => projectdetails.id == id)  
+            // let data = helper(id);
+            // return state.projectdetails.filters(projectdetails => projectdetails.id == id ); 
+            // return data
+        },
+
+    },
 })

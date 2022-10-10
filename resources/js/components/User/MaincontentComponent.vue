@@ -12,7 +12,7 @@
         <ApplyfilterComponent />
     </div>
 </section>
-<ProjectdetailsComponent />
+<ProjectdetailsComponent :id ="projectid"/>
 
 </template>
 <script>
@@ -25,13 +25,16 @@ import ProjectdetailsComponent from '../slider/ProjectdetailsComponent.vue'
 export default {
     data(){
         return{
+            projectid: ''
             // row: this.projecdetails
         }
     },
     methods:{
         openprojectdetailsmodel(data){
-            console.log('model open',data)
+            // console.log('model open',data)
+            this.projectid = data
             this.$store.state.slidertrogale.projectdetails = true
+
             
         }
     },

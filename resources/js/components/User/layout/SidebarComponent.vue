@@ -54,7 +54,8 @@
                         </a>
                     </li>
                     <li>
-                        <span @click="this.$store.dispatch('triggersidebarslider')"><i class="toggel-click1 rotate fa-solid fa-angle-right first" :style="{'display' : !$store.state.slidertrogale.sidebarslider? '': 'none'}" ></i></span>
+                        <!-- :style="{'display' : !$store.state.slidertrogale.sidebarslider? '': 'none'}" -->
+                        <span @click="this.$store.dispatch('triggersidebarslider')"><i class="toggel-click1 rotate fa-solid fa-angle-right first"  ></i></span>
                     </li>
                 </ul>
             </div>

@@ -172,7 +172,7 @@ h5 {
   flex-direction: column;
   gap: 35px;
   position: relative;
-  z-index: 0;
+  z-index: 1;
 }
 
 .bot-nav ul li a {

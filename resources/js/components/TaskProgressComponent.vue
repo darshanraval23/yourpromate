@@ -52,7 +52,7 @@ import { mapGetters, mapActions  } from "vuex";
 export default {
     methods: {
         projecdetails(data){
-            console.log(data)
+            // console.log(data)
             // this.parant.troggleTimeline
             // this.parant.troggleTimeline
             // console.log('project info',data)

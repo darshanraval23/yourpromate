@@ -3,7 +3,7 @@
         <div class="addnew-proj" @click="$store.state.isModalVisible = !$store.state.isModalVisible">
           <div class="proj">
             <i class="fa-sharp fa-solid fa-plus" set=""></i>
-            {{$store.state.isModalVisible}}
+            <!-- {{$store.state.isModalVisible}} -->
             <a href="#">Add New Project</a>
           </div>
           <p>Quick Access</p>

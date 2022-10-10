@@ -22,6 +22,7 @@ Route::post("/project",[projectController::class ,"index"]);
 
 Route::post("/project/add",[projectController::class ,"addproject"]);
 
+Route::get("/project/{id}",[projectController::class ,"getprojectbyid"]);
 //fall back routs
 // Route::fallback(function(){
 //     return response()->json([

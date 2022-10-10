@@ -76,7 +76,7 @@ import TimelinmodalComponent from './slider/TimelinmodalComponent.vue'
 import SidebarComponent from './User/layout/SidebarComponent.vue'
 import HeserComponent from './User/layout/HederComponent.vue'
 import AssignprojectComponent from './slider/AssignprojectComponent.vue'
-import ProjectdetailsComponent from './slider/ProjectdetailsComponent.vue'
+// import ProjectdetailsComponent from './slider/ProjectdetailsComponent.vue'
 import MaincontentComponent from './User/MaincontentComponent.vue'
 import ModalComponent from './User/layout/ModalComponent.vue'
 import {
@@ -89,7 +89,7 @@ export default {
         SidebarComponent,
         MaincontentComponent,
         TimelinmodalComponent,
-        ProjectdetailsComponent,
+        // ProjectdetailsComponent,
         AssignprojectComponent,
         ModalComponent
     },
@@ -155,10 +155,8 @@ export default {
             if (this.filddata.deadline == '') {
                 this.error.deadline = "deadline is requerd!"
             }
-
         },
         modelclosed(){
-            console.log('perant call')
             this.error ={
                  name: '',
                 details: '',

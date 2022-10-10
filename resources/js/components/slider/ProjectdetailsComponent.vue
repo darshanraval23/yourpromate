@@ -1,6 +1,6 @@
 <template>
 <div class="main-porjdetailas col-3 " :style="{'transform' : $store.state.slidertrogale.projectdetails ? 'translateX(0px)':'translateX(500px)'}">
-    <span><i class="toggel-click2 collaps3 fa-solid fa-angle-right first"></i></span>
+    <span><i class="toggel-click2 collaps3 fa-solid fa-angle-right first" @click="close"></i></span>
     <div class="porj-details">
         <div class="porj-details-heading">
             <h2>Project Details </h2>
@@ -28,7 +28,7 @@
                 </div>
             </form>
         </div>
-        <!-- ------------------------edit form End------------->
+        <!--------------------------edit form End------------->
 
         <div class="web-dev">
             <h3>Web Development</h3>
@@ -78,15 +78,40 @@
             </div>
         </div>
     </div>
+    {{id}}
+    <!-- {{$store.getters.projectdetails}} -->
+    <!-- its work -->
+    <!-- {{$store.getters.getprojectsbyid(1)}} -->
+    {{projectdetails}}
 </div>
 </template>
+
 <script>
+import {
+    mapGetters,
+    mapActions
+} from "vuex";
 export default {
-    props:{
-        id: String
+    data(){
+        return {
+            
+        }
     },
-    created(){
-        console.log(this.id)
-    }
+    props: {
+        id: String,
+        projectdetails: ''
+    },
+    onMounted() {
+        this.getprojectbyid()
+        
+    },
+
+    methods: {
+        close() {
+
+            this.$store.state.slidertrogale.projectdetails = false
+        },
+    },
+
 }
 </script>

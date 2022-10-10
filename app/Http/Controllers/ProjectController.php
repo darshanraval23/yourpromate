@@ -42,4 +42,11 @@ class ProjectController extends Controller
             'message' => ['The project has been successfully added!']
          ], 200);
     }
+    public function getprojectbyid($id)
+    {
+        return 'hallo';
+       $resualt = project::whare('id',  $id)
+                ->get();
+        return $resualt;
+    }
 }
