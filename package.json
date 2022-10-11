@@ -7,6 +7,7 @@
     "devDependencies": {
         "@popperjs/core": "^2.10.2",
         "@vitejs/plugin-vue": "^3.1.2",
+        "autoprefixer": "^10.4.12",
         "axios": "^0.27",
         "bootstrap": "^5.2.1",
         "css-loader": "^6.7.1",
@@ -14,6 +15,7 @@
         "lodash": "^4.17.19",
         "postcss": "^8.1.14",
         "sass": "^1.32.11",
+        "semantic-ui-ember": "github:Semantic-Org/Semantic-UI-Ember",
         "vite": "^3.0.0",
         "vue": "^3.2.37"
     },
@@ -21,10 +23,21 @@
         "@kyvg/vue3-notification": "^2.4.1",
         "@vue/compiler-sfc": "^3.2.40",
         "jquery": "^3.6.1",
+        "semantic-ui-css": "^2.5.0",
+        "semantic-ui-vue": "0.2.6",
         "vue": "^3.2.36",
         "vue-axios": "^3.4.1",
         "vue-loader": "^17.0.0",
         "vue-router": "^4.1.5",
         "vuex": "^4.0.2"
+    },
+    "postcss": {
+        "plugins": {
+            "autoprefixer": {
+                "browsers": [
+                    "last 2 versions"
+                ]
+            }
+        }
     }
 }

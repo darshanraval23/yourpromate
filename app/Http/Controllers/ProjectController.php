@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\QueryException;
 class ProjectController extends Controller
 {
      /**
@@ -16,7 +17,7 @@ class ProjectController extends Controller
         $employess = project::select(
             DB::raw('projects.*'),
             DB::raw('(CASE 
-            WHEN status = 1 THEN "PendingAllocation"
+            WHEN status = 1 THEN "Pending Allocation"
             WHEN status = 2 THEN "In Progress"
             WHEN status = 3 THEN "Allocated"
             WHEN status = 4 THEN "Camplited"
@@ -45,8 +46,23 @@ class ProjectController extends Controller
     public function getprojectbyid($id)
     {
         return 'hallo';
-       $resualt = project::whare('id',  $id)
+       $result = project::whare('id',  $id)
                 ->get();
-        return $resualt;
+        return $result;
+    }
+    public function assignproject(Request $req){
+
+        $projectid = $req->projectid;
+        $selectedemp = implode(',',$req->employesids);
+        try {
+            // DB query goes here.
+            $result = project::where('id', $projectid)
+                ->update(['allocated' => $selectedemp, 'status' => '3']);
+                return response($result,200);
+        } catch (\Exception  $e) {  
+            //if made error
+            return response($e,200);
+        }
+
     }
 }

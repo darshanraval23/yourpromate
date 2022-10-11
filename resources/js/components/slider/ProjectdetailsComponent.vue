@@ -4,14 +4,14 @@
     <div class="porj-details">
         <div class="porj-details-heading">
             <h2>Project Details </h2>
-            <i class="fa-regular fa-pen-to-square openbtn" onclick="openForm()"></i>
+            <i class="fa-regular fa-pen-to-square openbtn" @click="this.modeltroggle.changededline = true"></i>
         </div>
 
         <!-- ------------------------edit form Start------------->
 
-        <div class="form-popup1" id="form">
+        <div class="form-popup1" id="form" :style="{'display':modeltroggle.changededline ? 'block': 'none'}">
             <form class="form-container">
-                <i class="fa-solid fa-xmark form-close" onclick="closeForm()"></i>
+                <i class="fa-solid fa-xmark form-close"  @click="this.modeltroggle.changededline = false"></i>
                 <h3>Web Development</h3>
                 <!-- <label for="email"> type your Text here </label>  -->
                 <div class="edit-box">
@@ -24,41 +24,30 @@
                 </div>
                 <div class="inner-deadline1">
                     <h4>Dead line:</h4>
-                    <p>12-04-2021 <span>1:20PM</span></p>
-                </div>
+                    <p>{{projectdetails.deadline}}</p>
+                </div>  
             </form>
         </div>
         <!--------------------------edit form End------------->
 
         <div class="web-dev">
-            <h3>Web Development</h3>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                Quasi inventore dignissimos consequatur itaque? Quisquam,
-                quo a. Officiis reprehenderit beatae veritatis, dolorum
-                temporibus est aliquam delectus soluta quaerat expedita
-                explicabo laboriosam...
-                <button class="Click-here modal-toggle" onclick="openpop()" href="#popup1">
+            <h3>{{projectdetails.name}}</h3>
+            <p>{{projectdetails.details}}
+                <button class="Click-here modal-toggle" @click="this.modeltroggle.moredetails = true" href="#popup1">
                     Read More
                     <i class="fa-solid fa-angles-right"></i>
                 </button>
             </p>
 
             <div class="modal">
-                <div class="custom-model-main modal-toggle" id="pop">
+                <div class="custom-model-main modal-toggle" id="pop" :style="{'display':modeltroggle.moredetails ? 'block': 'none'}">
                     <div class="custom-model-inner">
                         <div class="close-btn">
-                            <i class="fa-solid fa-xmark modal-toggle" onclick="closepop()"></i>
+                            <i class="fa-solid fa-xmark modal-toggle" @click="this.modeltroggle.moredetails = false"></i>
                         </div>
                         <div class="custom-model-wrap">
                             <div class="pop-up-content-wrap">
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut eum beatae quisquam eaque hic cumque
-                                    dolorum aperiam accusantium quam minima earum corporis fuga ea distinctio culpa architecto,
-                                    eveniet
-                                    repellat officiis sint quis dolore. Qui, aperiam! Voluptatibus dolores
-                                    provident repudiandae! Voluptate qui alias earum similique, quae voluptatem et optio velit debitis
-                                    nostrum reprehenderit quos quia, doloribus incidunt possimus non. Incidunt vel, a quasi quis
-                                    accusamus, saepe optio quaerat, amet inventore id voluptates quibusdam? Voluptate atque dicta
-                                    minus!
+                                <p>{{projectdetails.details}}
                                 </p>
                             </div>
                         </div>
@@ -70,19 +59,15 @@
             <div class="tag-div">
                 <a href="#">Tag</a>
                 <a href="#">Tag</a>
-                <p>12-04-2021 <span>1:20PM</span></p>
+                <p>{{projectdetails.ProjectStart}}</p>
             </div>
             <div class="deadline1">
                 <h4>Dead line:</h4>
-                <p>12-04-2021 <span>1:20PM</span></p>
+                <p>{{projectdetails.deadline}}</p>
             </div>
         </div>
     </div>
-    {{id}}
-    <!-- {{$store.getters.projectdetails}} -->
-    <!-- its work -->
-    <!-- {{$store.getters.getprojectsbyid(1)}} -->
-    {{projectdetails}}
+    <!-- {{projectdetails}}  -->
 </div>
 </template>
 
@@ -92,23 +77,26 @@ import {
     mapActions
 } from "vuex";
 export default {
-    data(){
+    data() {
         return {
-            
+            modeltroggle:{
+                changededline: false,
+                moredetails: false,
+            },
+            projectdetails: ''
         }
     },
     props: {
-        id: String,
         projectdetails: ''
     },
-    onMounted() {
-        this.getprojectbyid()
-        
+    computed: {
+        // ...mapGetters({projectdetails :'getprojectsbyid'})
     },
-
+    created() {
+        // console.log(this.id)
+    },
     methods: {
         close() {
-
             this.$store.state.slidertrogale.projectdetails = false
         },
     },

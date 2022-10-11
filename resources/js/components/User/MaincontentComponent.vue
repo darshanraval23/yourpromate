@@ -1,18 +1,14 @@
 <template>
 <section class="col-12 side-nav">
-    <!-- {{this.$store.getters.getprojectsdetails}} -->
-    <!-- {{this.projecdetails}} -->
-    <!-- {{getprojectsdetails}} -->
     <div class="circle1"></div>
-
     <SearchboxComponent />
     <div class="web-development">
-        <!-- {{this.projecdetails}} -->
-        <TaskProgressComponent :projectdata="this.projecdetails" @projectselect="openprojectdetailsmodel"/>
+        <TaskProgressComponent :projectdata="this.projecdetails" @projectselect="openprojectdetailsmodel" @opentimeline="openprojecttimeline" />
         <ApplyfilterComponent />
     </div>
 </section>
-<ProjectdetailsComponent :id ="projectid"/>
+<ProjectdetailsComponent :projectdetails ="getprojectbyid"/>
+<AssignprojectComponent :projectid="projectid"></AssignprojectComponent>
 
 </template>
 <script>
@@ -21,21 +17,30 @@ import SearchboxComponent from '../slider/SearchboxComponent.vue'
 import ApplyfilterComponent from '../ApplyfilterComponent.vue'
 import TaskProgressComponent from '../TaskProgressComponent.vue'
 import ProjectdetailsComponent from '../slider/ProjectdetailsComponent.vue'
+import AssignprojectComponent from '../slider/AssignprojectComponent.vue'
 
 export default {
     data(){
         return{
-            projectid: ''
-            // row: this.projecdetails
+            projectid: '',
+            getprojectbyid: ''
         }
     },
     methods:{
-        openprojectdetailsmodel(data){
-            // console.log('model open',data)
-            this.projectid = data
-            this.$store.state.slidertrogale.projectdetails = true
-
+        openprojectdetailsmodel(id){
+            this.getprojectbyid = this.$store.getters.getprojectsbyid(id)
+            // this.projectid = data
+            this.$store.state.slidertrogale.projectdetails = true            
+        },
+        openprojecttimeline(id){
             
+            // console.log('open model',id)
+            // console.log('main projectid',projectid)
+            // console.log('main getprojectbyid',getprojectbyid)
+            this.projectid = id
+            this.$store.state.slidertrogale.assignproject = true            
+
+
         }
     },
     components: { 
@@ -43,16 +48,13 @@ export default {
         ApplyfilterComponent,
         TaskProgressComponent,
         ProjectdetailsComponent,
+        AssignprojectComponent
     }, 
     created(){
         this.$store.dispatch('getprojects')
-        // ...mapGetters()
-        // console.log(store.getters.getprojectsdetails)
-        // this.$store.gatter('')
     },
     computed:{
         ...mapGetters({projecdetails: 'getprojectsdetails'})
-        // ...mapGetters(['getprojectsdetails'])
     },
     getters:{
 

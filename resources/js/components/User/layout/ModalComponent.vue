@@ -34,7 +34,7 @@ export default {
     methods: {
         close() {
             this.$emit('close');
-            this.$store.state.isModalVisible = !this.$store.state.isModalVisible
+            this.$store.state.isModalVisible = false
         },
     },
 };
@@ -51,10 +51,11 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 1;
 }
 
 .modal {
-    background: #FFFFFF;
+    background: #F6F7F9;
     box-shadow: 2px 2px 20px 1px;
     overflow-x: auto;
     display: flex;
@@ -73,7 +74,7 @@ export default {
 .modal-header {
     position: relative;
     border-bottom: 1px solid #eeeeee;
-    color: #4AAE9B;
+    color: #ff8d4f;
     justify-content: space-between;
 }
 

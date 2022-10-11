@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\UserController;
 use Laravel\Sanctum\Sanctum; 
 use App\Http\Controllers\ProjectController;
-
+use App\Models\project;
 
 //public routs
 //user ragistration rout
@@ -23,6 +23,10 @@ Route::post("/project",[projectController::class ,"index"]);
 Route::post("/project/add",[projectController::class ,"addproject"]);
 
 Route::get("/project/{id}",[projectController::class ,"getprojectbyid"]);
+
+Route::get("/users",[UserController::class ,"getusers"]);
+
+Route::post("/assign",[ProjectController::class ,"assignproject"]);
 //fall back routs
 // Route::fallback(function(){
 //     return response()->json([

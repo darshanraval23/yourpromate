@@ -32,6 +32,7 @@ export default createStore({
     modules: {
         //use modules 
         user: UserModule,
+        
 
     },
     mutations: {

@@ -2,54 +2,49 @@
 <div class="hero-page">
     <notifications />
     <SidebarComponent></SidebarComponent>
-    <!-- @click="this.$store.commit('closemodal')" -->
     <div class="col-12 background-overlay">
         <HeserComponent></HeserComponent>
         <MaincontentComponent>
         </MaincontentComponent>
     </div>
-    <!-- vue model -->
-    <!-- <ModalComponent v-show="$store.state.isModalVisible" @close="closeModal"></ModalComponent> -->
-    <!-- end of vue model -->
+    <!--model start  -->
     <ModalComponent v-show="$store.state.isModalVisible" @close="modelclosed">
         <template v-slot:header>
             <h1> Add Project</h1>
         </template>
         <template v-slot:body>
-            <!-- {{error}} -->
             <form @submit.prevent="addproject">
                 <div class="input-cantainer">
-                    <label for="name">Project name:</label>
-                    <input type="text" id="name" name="user_name" v-model="filddata.name">
+                    <label for="name">Project Name*</label>
+                    <input type="text" id="name" name="user_name" v-model="filddata.name" placeholder="Enter Project Name">
                     <span v-if="error.name">{{error.name}}</span>
                 </div>
-
                 <div class="input-cantainer">
-                    <label for="projectdetails">Project Details:</label>
-                    <textarea id="projectdetails" name="user_bio" v-model="filddata.details"></textarea>
+                    <label for="projectdetails">Project Details*</label>
+                    <textarea id="projectdetails" name="user_bio" v-model="filddata.details" placeholder="Enter Project Details"></textarea>
                     <span v-if="error.details">{{error.details}}</span>
                 </div>
-
                 <div class="input-cantainer">
-                    <label for="categories">Categories:</label>
-                    <select id="categories" name="project_categories" v-model="filddata.categories">
+                    <label for="categories">Categories*</label>
+                    <select id="categories" name="project categories" v-model="filddata.categories">
+                        <option value="" selected>Select Project Categorie</option>
                         <optgroup label="Web">
-                            <option value="php_laravel">Php Laravel</option>
+                            <option value="php laravel">Php Laravel</option>
                             <option value="php">PHP</option>
-                            <option value="web_designer">Web Designer</option>
+                            <option value="web designer">Web Designer</option>
                             <option value="wordpress">Wordpress</option>
                         </optgroup>
                         <optgroup label="Mobile">
                             <option value="android">Android</option>
                             <option value="ios">IOS</option>
-                            <option value="mobile_designer">Mobile Designer</option>
+                            <option value="mobile designer">Mobile Designer</option>
                         </optgroup>
                     </select>
                     <span v-if="error.categories">{{error.categories}}</span>
                 </div>
 
                 <div class="input-cantainer">
-                    <label for="">deadline</label>
+                    <label for="">Deadline*</label>
                     <input type="date" name="deadline" id="" v-model="filddata.deadline">
                     <span v-if="error.deadline">{{error.deadline}}</span>
                 </div>
@@ -65,18 +60,14 @@
             <!-- This is a new modal footer. -->
         </template>
     </ModalComponent>
-
 </div>
 <TimelinmodalComponent />
-<AssignprojectComponent />
 </template>
 
 <script>
 import TimelinmodalComponent from './slider/TimelinmodalComponent.vue'
 import SidebarComponent from './User/layout/SidebarComponent.vue'
 import HeserComponent from './User/layout/HederComponent.vue'
-import AssignprojectComponent from './slider/AssignprojectComponent.vue'
-// import ProjectdetailsComponent from './slider/ProjectdetailsComponent.vue'
 import MaincontentComponent from './User/MaincontentComponent.vue'
 import ModalComponent from './User/layout/ModalComponent.vue'
 import {
@@ -89,12 +80,7 @@ export default {
         SidebarComponent,
         MaincontentComponent,
         TimelinmodalComponent,
-        // ProjectdetailsComponent,
-        AssignprojectComponent,
         ModalComponent
-    },
-    computed: {
-
     },
     data() {
         return {
@@ -126,7 +112,6 @@ export default {
                         console.log('saved projenct', resp)
                         this.$store.dispatch('getprojects')
                         this.$store.state.isModalVisible = false
-                        // this.
                         this.filddata = {
                             name: '',
                             details: '',
@@ -156,9 +141,9 @@ export default {
                 this.error.deadline = "deadline is requerd!"
             }
         },
-        modelclosed(){
-            this.error ={
-                 name: '',
+        modelclosed() {
+            this.error = {
+                name: '',
                 details: '',
                 categories: '',
                 deadline: ''
@@ -174,7 +159,6 @@ export default {
     }
 }
 </script>
-
 <style scoped>
 form {
     max-width: 100%;
@@ -183,11 +167,6 @@ form {
     background: #f4f7f8;
     border-radius: 8px;
 }
-
-/* h1 {
-  margin: 0 0 30px 0;
-  text-align: center;
-} */
 .btn-submit button {
     margin: 10px 5px;
 }
@@ -242,37 +221,34 @@ select {
     height: 32px;
     border-radius: 2px;
 }
-
 .submit {
     padding: 10px 18px;
     color: #FFF;
-    background-color: #4bc970;
+    background-color: #ff8d4f;
     font-size: 18px;
     text-align: center;
     font-style: normal;
     border-radius: 5px;
     /* width: 100%; */
-    border: 1px solid #3ac162;
+    border: 1px solid #ff8d4f;
     border-width: 1px 1px 3px;
     box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.1) inset;
     margin-bottom: 10px;
 }
-
 .denger {
     padding: 10px 18px;
     color: #FFF;
-    background-color: #ff2020;
+    background-color: #C82333;
     font-size: 18px;
     text-align: center;
     font-style: normal;
     border-radius: 5px;
     /* width: 100%; */
-    border: 1px solid #be1111;
+    border: 1px solid #C82333;
     border-width: 1px 1px 3px;
     box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.1) inset;
     margin-bottom: 10px;
 }
-
 fieldset {
     margin-bottom: 30px;
     border: none;
@@ -286,6 +262,7 @@ legend {
 label {
     display: block;
     margin-bottom: 8px;
+    font-family: "gilroy";
 }
 
 label.light {
@@ -306,12 +283,4 @@ label.light {
     text-shadow: 0 1px 0 rgba(255, 255, 255, 0.2);
     border-radius: 100%;
 }
-
-/* @media screen and (min-width: 480px) {
-
-    form {
-        max-width: 480px;
-    }
-
-} */
 </style>

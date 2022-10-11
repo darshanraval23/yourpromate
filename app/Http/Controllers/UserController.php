@@ -121,4 +121,8 @@ class UserController extends Controller
             ]);
         }
     }
+    public function getusers(){
+        $result = User::all();
+        return response($result ,200);
+    }
 }
