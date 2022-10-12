@@ -1,5 +1,5 @@
 <template>
-<div class="main-time-detail col-3 mySidenav" id="mySidenav" :style="{'transform' : $store.state.slidertrogale.timeline ? 'translateX(0px)':'translateX(500px)'}" >
+<div class="main-time-detail col-3 mySidenav" id="mySidenav" :style="{'transform' : $store.state.slidertrogale.timeline ? 'translateX(0px)':'translateX(500px)'}">
     <span @click="$store.state.slidertrogale.timeline= false"><i class="toggel-click3 closebtn collaps1 fa-solid fa-angle-right first"></i></span>
     <div class="time-details">
         <h3>Timeline</h3>
@@ -11,7 +11,7 @@
                     </div>
                     <div class="topic">
                         <h4>Project created</h4>
-                        <p>12-04-2021 <span>1:20PM</span></p>
+                        <p>{{recodes.created_at ? dateTime(recodes.created_at) : 'Project Not Created'}}</p>
                         <div class="contact">
                         </div>
                     </div>
@@ -22,11 +22,8 @@
                     </div>
                     <div class="topic">
                         <h4>Project allocated</h4>
-                        <p>12-04-2021 <span>1:20PM</span></p>
-
+                        <p>{{recodes.Project_allocated_date ? dateTime(recodes.Project_allocated_date) : 'Project Not Allocated'}}</p>
                         <div class="contact">
-                            <i class="fa-solid fa-user"></i>
-                            <i class="fa-solid fa-user"></i>
                             <i class="fa-solid fa-user"></i>
                         </div>
                     </div>
@@ -37,7 +34,8 @@
                     </div>
                     <div class="topic">
                         <h4>Project Start</h4>
-                        <p>12-04-2021 <span>1:20PM</span></p>
+                        <p>{{recodes.ProjectStart ? dateTime(recodes.ProjectStart) : 'Project Not Started'}}</p>
+                        <!-- <p>12-04-2021 <span>1:20PM</span></p> -->
                         <div class="contact">
                         </div>
                     </div>
@@ -48,12 +46,12 @@
                     </div>
                     <div class="topic">
                         <h4>Project Progress</h4>
-                        <p>On 12-04-2021 <span>1:20PM</span></p>
+                        <p>On {{dateTime(new Date())}}</p>
                         <div class="contact">
-                            <div class="progress-container">
-                                <progress title="50%" id="progressBar" value="50" max="100"></progress>
+                            <div class="progress-container ">
+                                <div class="progressbar" :style="{'width': recodes.progress}">
+                                </div>
                             </div>
-                            <!-- <span>50%</span> -->
                         </div>
                     </div>
                 </li>
@@ -63,7 +61,7 @@
                     </div>
                     <div class="topic">
                         <h4>Project Delivered</h4>
-                        <p>12-04-2021 <span>1:20PM</span></p>
+                        <p>{{recodes.ProjectDelivered ? dateTime(recodes.ProjectDelivered) :'Project Not Delivered' }}</p>
                         <div class="contact">
                         </div>
                     </div>
@@ -74,12 +72,8 @@
                     </div>
                     <div class="topic">
                         <h4>Project Launch</h4>
-                        <p>12-04-2021 <span>1:20PM</span></p>
-
+                        <p>{{recodes.ProjectLaunch ? recodes.ProjectLaunch :'Project Not Launch' }}</p>
                         <div class="contact">
-                            <!-- <div class="progress-container">
-                  <progress value="75" max="100">75%</progress>
-                </div> -->
                         </div>
                     </div>
                 </li>
@@ -88,3 +82,27 @@
     </div>
 </div>
 </template>
+<script>
+import moment from 'moment'
+export default {
+    props: {
+        recodes: {
+            default: '',
+            type: Object
+        }
+    },
+    computed: {
+
+    },
+    created() {},
+    methods: {
+        /*
+        @info date formater function 
+        @perms date
+        */
+        dateTime(value) {
+            return moment(value).format('DD-MM-YYYY h:mm A');
+        },
+    }
+}
+</script>

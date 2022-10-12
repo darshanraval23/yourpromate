@@ -25,7 +25,6 @@
     </div>
 </section>
 </template>
-
 <script>
 export default {
     data() {
@@ -40,7 +39,7 @@ export default {
             type: Number
         },
     },
-    created() {
+    created(){
         this.getemployees();
     },
     methods: {
@@ -67,12 +66,12 @@ export default {
                     });
                     console.log(e)
                 })
-            console.log(this.selectedemployee)
+            // console.log(this.selectedemployee)
         },
         getemployees() {
             let resualt = axios.get("/api/users")
                 .then(resp => {
-                    console.log(resp)
+                    // console.log(resp)
                     this.employes = resp.data
                 })
                 .catch(e => {

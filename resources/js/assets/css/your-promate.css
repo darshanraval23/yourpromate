@@ -1033,7 +1033,7 @@ progress {
   transition: .5s ease;
 }
 
-.progress-container::before {
+.progressbar {
   content: " ";
   font-size: 12px;
   text-align: center;

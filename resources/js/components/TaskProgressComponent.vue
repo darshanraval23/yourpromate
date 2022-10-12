@@ -55,12 +55,13 @@ export default {
         },
         open(projectid, item){
             if(item == 2){
+                this.$emit('assignproject', projectid)
                 this.$store.state.slidertrogale.assignproject = true
-                this.$emit('opentimeline', projectid)
             }
             else if(item == 1){
-                this.$store.state.slidertrogale.timeline = true
+                // console.log('timeline', projectid)
                 this.$emit('timeline', projectid)
+                this.$store.state.slidertrogale.timeline = true
             }
         }
     },

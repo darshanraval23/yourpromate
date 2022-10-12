@@ -27,7 +27,8 @@ export default createStore({
         projectdetails: Object,
         error: [],
         isModalVisible: false,
-        userdata: Object
+        userdata: Object,
+        currentComponent: 'MaincontentComponent'
     },
     modules: {
         //use modules 

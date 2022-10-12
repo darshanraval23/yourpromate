@@ -23,6 +23,7 @@
         "@kyvg/vue3-notification": "^2.4.1",
         "@vue/compiler-sfc": "^3.2.40",
         "jquery": "^3.6.1",
+        "moment": "^2.29.4",
         "semantic-ui-css": "^2.5.0",
         "semantic-ui-vue": "0.2.6",
         "vue": "^3.2.36",

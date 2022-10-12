@@ -4,8 +4,8 @@
     <SidebarComponent></SidebarComponent>
     <div class="col-12 background-overlay">
         <HeserComponent></HeserComponent>
-        <MaincontentComponent>
-        </MaincontentComponent>
+        <component v-bind:is="$store.state.currentComponent" ></component>
+        <!-- <MaincontentComponent></MaincontentComponent> -->
     </div>
     <!--model start  -->
     <ModalComponent v-show="$store.state.isModalVisible" @close="modelclosed">
@@ -61,26 +61,27 @@
         </template>
     </ModalComponent>
 </div>
-<TimelinmodalComponent />
 </template>
 
 <script>
-import TimelinmodalComponent from './slider/TimelinmodalComponent.vue'
+// import TimelinmodalComponent from './slider/TimelinmodalComponent.vue'
 import SidebarComponent from './User/layout/SidebarComponent.vue'
 import HeserComponent from './User/layout/HederComponent.vue'
 import MaincontentComponent from './User/MaincontentComponent.vue'
 import ModalComponent from './User/layout/ModalComponent.vue'
-import {
-    useRouter
-} from 'vue-router'
+import CompletedComponent from './User/pages/CompletedComponent.vue'
+import InprogressComponent from './User/pages/InprogressComponent.vue'
+import {useRouter} from 'vue-router'
 
 export default {
     components: {
         HeserComponent,
         SidebarComponent,
         MaincontentComponent,
-        TimelinmodalComponent,
-        ModalComponent
+        // TimelinmodalComponent,   
+        ModalComponent,
+        CompletedComponent,
+        InprogressComponent
     },
     data() {
         return {
