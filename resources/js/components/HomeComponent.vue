@@ -64,7 +64,6 @@
 </template>
 
 <script>
-// import TimelinmodalComponent from './slider/TimelinmodalComponent.vue'
 import SidebarComponent from './User/layout/SidebarComponent.vue'
 import HeserComponent from './User/layout/HederComponent.vue'
 import MaincontentComponent from './User/MaincontentComponent.vue'
@@ -78,7 +77,6 @@ export default {
         HeserComponent,
         SidebarComponent,
         MaincontentComponent,
-        // TimelinmodalComponent,   
         ModalComponent,
         CompletedComponent,
         InprogressComponent
@@ -110,7 +108,6 @@ export default {
                             title: "Important message",
                             text: resp.data.message,
                         });
-                        console.log('saved projenct', resp)
                         this.$store.dispatch('getprojects')
                         this.$store.state.isModalVisible = false
                         this.filddata = {

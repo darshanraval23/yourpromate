@@ -1,9 +1,13 @@
 <template>
 <section class="col-12 side-nav">
     <div class="circle1"></div>
-    <SearchboxComponent />
+    <SearchboxComponent  >
+    </SearchboxComponent>
     <div class="web-development">
-        <TaskProgressComponent :projectdata="this.projecdetails" @projectselect="openprojectdetailsmodel" @timeline="openprojecttimeline" @assignproject ="openassignproject" />
+        <TaskProgressComponent :projectdata="this.projecdetails"
+         @projectselect="openprojectdetailsmodel"
+         @timeline="openprojecttimeline"
+         @assignproject ="openassignproject" />
         <ApplyfilterComponent />
     </div>
 </section>
@@ -40,8 +44,8 @@ export default {
             this.projectid = id
             this.$store.state.slidertrogale.timeline = true            
             this.projectDetails = this.$store.getters.getprojectsbyid(id)
-            console.log(this.projectDetails)
-        }
+        },
+        
     },
     components: { 
         SearchboxComponent,

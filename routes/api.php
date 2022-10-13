@@ -27,6 +27,9 @@ Route::get("/project/{id}",[projectController::class ,"getprojectbyid"]);
 Route::get("/users",[UserController::class ,"getusers"]);
 
 Route::post("/assign",[ProjectController::class ,"assignproject"]);
+
+Route::post("/searchproject",[ProjectController::class ,"getprojectsbyname"]);
+
 //fall back routs
 // Route::fallback(function(){
 //     return response()->json([

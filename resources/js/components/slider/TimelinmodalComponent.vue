@@ -88,7 +88,7 @@ export default {
     props: {
         recodes: {
             default: '',
-            type: Object
+            // type: Object
         }
     },
     computed: {

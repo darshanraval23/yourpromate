@@ -45,7 +45,6 @@ export default {
     },
     methods: {
         LoginUser() {
-            // console.log(this.formdata)
             const options = this.formdata
             let resualt = axios.post('/api/user/login', options)
                 .then(resp => {
@@ -55,16 +54,13 @@ export default {
                         text: resp.data.message
                     });
                     sessionStorage.setItem("token", resp.data.token);
-                    // this.$router.go('/')
                     this.token = sessionStorage.getItem('token')
-                    // this.$store.commit('login',this.token)
                     this.$router.push({
                         path: '/',
                         replace: true
                     })
                 }).catch(e => {
                     this.formerror = e.response.data
-                    // console.log(e);
                    this.tonggelstyle = 'blocphpk'
                 });
         },

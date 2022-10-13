@@ -40,8 +40,27 @@
             </div>
         </div>
     </div>
+    <div v-if="projectdata.length < 1" class="error">
+        <span class="error">Oh! The project was not found!</span>
+    </div>
 </div>
 </template>
+
+<style>
+.error {
+    background-color: #caa8a8;
+    border-radius: 10px;
+    margin: 0 10px;
+    padding: 10px;
+}
+
+.error span {
+    font-size: 18px;
+    /* margin: 10px; */
+    font-family: "gilroy";
+}
+</style>
+
 <script>
 import {
     mapGetters,
@@ -53,13 +72,11 @@ export default {
         projecdetails(data) {
             this.$emit('projectselect', data)
         },
-        open(projectid, item){
-            if(item == 2){
+        open(projectid, item) {
+            if (item == 2) {
                 this.$emit('assignproject', projectid)
                 this.$store.state.slidertrogale.assignproject = true
-            }
-            else if(item == 1){
-                // console.log('timeline', projectid)
+            } else if (item == 1) {
                 this.$emit('timeline', projectid)
                 this.$store.state.slidertrogale.timeline = true
             }
@@ -69,7 +86,10 @@ export default {
         //  ...mapGetters('projectsdetails', 2)
     },
     props: {
-        projectdata: Object
+        projectdata: {
+            default: '',
+            // type: Object
+        }
     }
 }
 </script>

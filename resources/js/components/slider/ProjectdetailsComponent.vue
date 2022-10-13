@@ -11,7 +11,7 @@
 
         <div class="form-popup1" id="form" :style="{'display':modeltroggle.changededline ? 'block': 'none'}">
             <form class="form-container">
-                <i class="fa-solid fa-xmark form-close"  @click="this.modeltroggle.changededline = false"></i>
+                <i class="fa-solid fa-xmark form-close" @click="this.modeltroggle.changededline = false"></i>
                 <h3>Web Development</h3>
                 <!-- <label for="email"> type your Text here </label>  -->
                 <div class="edit-box">
@@ -25,7 +25,7 @@
                 <div class="inner-deadline1">
                     <h4>Dead line:</h4>
                     <p>{{projectdetails.deadline}}</p>
-                </div>  
+                </div>
             </form>
         </div>
         <!--------------------------edit form End------------->
@@ -67,7 +67,6 @@
             </div>
         </div>
     </div>
-    <!-- {{projectdetails}}  -->
 </div>
 </template>
 
@@ -79,22 +78,17 @@ import {
 export default {
     data() {
         return {
-            modeltroggle:{
+            modeltroggle: {
                 changededline: false,
                 moredetails: false,
             },
-            projectdetails: ''
         }
     },
     props: {
         projectdetails: ''
     },
-    computed: {
-        // ...mapGetters({projectdetails :'getprojectsbyid'})
-    },
-    created() {
-        // console.log(this.id)
-    },
+    computed: {},
+    created() {},
     methods: {
         close() {
             this.$store.state.slidertrogale.projectdetails = false

@@ -46,11 +46,9 @@ export default {
     },
     methods: {
         RegisterUser() {
-            // console.log(this.formdata)
             const options = this.formdata;
             let resualt = axios.post('/api/user/ragister', options)
                 .then(resp => {
-                    console.log(resp);
                     this.$notify({
                         type: "success",
                         title: "Important message",
@@ -59,7 +57,6 @@ export default {
                     this.$router.push({path: '/signin', replace: true })
                 })
                 .catch(e => {
-                    console.log(e);
                     this.formerror = e.response.data
                 });
         }
@@ -68,7 +65,6 @@ export default {
 </script>
 
 <style scoped>
-/* @import url(https://fonts.googleapis.com/css?family=Roboto:300);  */
 h1 {
     margin: 2% 0%;
 }
@@ -146,10 +142,6 @@ h1 {
     color: #4CAF50;
     text-decoration: none;
 }
-
-/* .form .register-form {
-    display: none;
-} */
 
 .container {
     position: relative;

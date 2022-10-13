@@ -31,12 +31,13 @@ export default {
         return {
             selectedemployee: {},
             employes: {},
+            error: ''
         }
     },
     props: {
         projectid: {
             default: 1,
-            type: Number
+            // type: Number
         },
     },
     created(){
@@ -64,18 +65,15 @@ export default {
                         title: 'Important message',
                         text: e.response.data
                     });
-                    console.log(e)
                 })
-            // console.log(this.selectedemployee)
         },
         getemployees() {
             let resualt = axios.get("/api/users")
                 .then(resp => {
-                    // console.log(resp)
                     this.employes = resp.data
                 })
                 .catch(e => {
-                    console.log(e)
+                    this.error = e.response.data
                 })
         }
 

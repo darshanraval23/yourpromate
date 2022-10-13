@@ -21,6 +21,7 @@ export default createStore({
             assignproject: false,
             projectdetails: false,
             sidebarslider: false,
+            isaddprojectfixed: false,
         },
         isAuthenticated: false,
         token: '',
@@ -43,31 +44,24 @@ export default createStore({
         */
         trogglesmodal(state, data) {
             if (data == 'timeline') {
-                console.log('state mutation data', data)
                 this.state.slidertrogale.timeline = !this.state.slidertrogale.timeline
             } else if (data == 'assignproject') {
-                console.log('state mutation data', data)
                 this.state.slidertrogale.assignproject = !this.state.slidertrogale.assignproject
             } else if (data == 'projectdetails') {
-                console.log('state mutation data', data)
                 this.state.slidertrogale.projectdetails = !this.state.slidertrogale.projectdetails
             }
-            // this.commit(sidebartoggel)
         },
         login(state, data) {
-            console.log('login')
             this.state.isautodication = true
             this.state.token = data
         },
         logout(state, data) {
-            // console.log(data)
             this.state.isautodication = false
         },
         changename(state) {
             this.state.name = 'raval'
         },
         closemodal() {
-            console.log('model close')
             this.state.slidertrogale.timeline = false
             this.state.slidertrogale.assignproject = false
             this.state.slidertrogale.projectdetails = false
@@ -88,8 +82,8 @@ export default createStore({
         },
         async troggleme(state, commit) {
             // console.log(paylode);
-            console.log('action called', commit);
-            console.log('action called', state);
+            // console.log('action called', commit);
+            // console.log('action called', state);
             // state.toggelsidebar = !state.toggelsidebar
         },
         async addproject(state, commit) {
@@ -110,14 +104,29 @@ export default createStore({
                     this.state.error = e.response.data
                 })
         },
-        getprojectbyid(state, id){
-            let resualt = axios.get("/api/project/"+id)
+        async getprojectsbyname(state, name) {
+            if(name == ''){
+               this.dispatch('getprojects') 
+            }else{
+            const searchItem ={
+                'projectname': name
+            }
+            let resualt = axios.post('/api/searchproject', searchItem)
                 .then(resp => {
-                    console.log(resp)
                     this.state.projectdetails = resp.data
                 })
                 .catch(e => {
-                    console.log(e)
+                    this.state.error = e.response.data
+                })
+            }
+        },
+
+        getprojectbyid(state, id){
+            let resualt = axios.get("/api/project/"+id)
+                .then(resp => {
+                    this.state.projectdetails = resp.data
+                })
+                .catch(e => {
                     this.state.error = e.response.data
                 })
         }
@@ -135,11 +144,7 @@ export default createStore({
             return state.projectdetails
         },
         getprojectsbyid: (state) => (id) => {
-            console.log(id)
             return state.projectdetails.find(projectdetails => projectdetails.id == id)  
-            // let data = helper(id);
-            // return state.projectdetails.filters(projectdetails => projectdetails.id == id ); 
-            // return data
         },
 
     },

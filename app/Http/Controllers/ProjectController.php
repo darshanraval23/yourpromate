@@ -65,4 +65,18 @@ class ProjectController extends Controller
         }
 
     }
+    public function getprojectsbyname(Request $req){
+        $projectname = $req->projectname;
+        try {
+            // DB query goes here.
+            $result = project::where('name','LIKE', '%'.$projectname.'%')
+                ->get();
+
+                return response($result,200);
+        } catch (\Exception  $e) {  
+            //if made error
+            return response($e,200);
+        }
+
+    }
 }
