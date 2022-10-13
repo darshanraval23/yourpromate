@@ -1,6 +1,12 @@
 <template>
 <div class="hero-page">
     <notifications />
+    <v-btn
+      depressed
+      color="primary"
+    >
+      vuetify
+    </v-btn>
     <SidebarComponent></SidebarComponent>
     <div class="col-12 background-overlay">
         <HeserComponent></HeserComponent>

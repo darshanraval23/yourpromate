@@ -58,6 +58,7 @@ export default {
                         title: 'Important message',
                         text: 'project allocated sucseesfully!'
                     });
+                    this.$store.dispatch('getprojects')
                     this.close()
                 })
                 .catch(e => {

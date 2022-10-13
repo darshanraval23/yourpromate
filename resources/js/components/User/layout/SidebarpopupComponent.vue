@@ -8,10 +8,17 @@
         <p>Quick Access</p>
         <a href="#">View Archive List</a>
     </div>
-    <i @click="fixedsidebar" class="fa-solid fa-thumbtack" :style="{'color': isSliderfixed ? '#ff8d4f': ''}"></i>
+    <div class="sliderpin " @click="fixedsidebar">
+        <i class="fa-solid fa-thumbtack " :style="{'color': isSliderfixed ? '#ff8d4f': ''}"></i>
+    </div>
 </aside>
 </template>
-
+<style scoped>
+.sliderpin{
+cursor: pointer;
+/* padding: 20px; */
+}
+</style>
 <script>
 export default {
     data() {

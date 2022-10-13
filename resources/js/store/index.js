@@ -80,12 +80,6 @@ export default createStore({
         triggersidebarslider(state) {
             this.state.slidertrogale.sidebarslider = !this.state.slidertrogale.sidebarslider
         },
-        async troggleme(state, commit) {
-            // console.log(paylode);
-            // console.log('action called', commit);
-            // console.log('action called', state);
-            // state.toggelsidebar = !state.toggelsidebar
-        },
         async addproject(state, commit) {
             let resualt = axios.post('/api/project')
                 .then(resp => {

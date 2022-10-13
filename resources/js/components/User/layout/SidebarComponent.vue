@@ -53,7 +53,7 @@
                         <div class="poly6"></div>
                     </a>
                 </li>
-                <li>
+                <li >
                     <span @click="triggersidebar" ><i class="toggel-click1 rotate" :class="[$store.state.slidertrogale.sidebarslider? 'fa-solid fa-angle-right first down':'fa-solid fa-angle-right first']"></i></span>
                 </li>
             </ul>
